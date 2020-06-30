@@ -4,7 +4,7 @@
  * Copyright (c) 2012-2016 Andrey Egorov
  * Copyright (c) 2020 Ruslan Belziuk
  * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
- * Version: 1.3.0
+ * Version: 1.3.1
  *
  * Requriements:
  * https://github.com/RobinHerbots/jquery.inputmask
@@ -359,10 +359,7 @@
     }
 
     var maskStart = function(maskOpts) {
-        maskOpts = $.extend(true, {
-            onMaskApply: $.noop,
-            onMaskChange: $.noop
-        }, maskOpts);
+        maskOpts = $.extend(true, $.fn.inputmasks.defaults, maskOpts);
         var defs = {};
         for (var def in maskOpts.inputmask.definitions) {
             var validator = maskOpts.inputmask.definitions[def].validator;
@@ -421,4 +418,8 @@
         }
     }
 
+    $.fn.inputmasks.defaults = {
+        onMaskApply: $.noop,
+        onMaskChange: $.noop
+    };
 })(jQuery);

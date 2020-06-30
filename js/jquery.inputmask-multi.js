@@ -1,9 +1,10 @@
 /*
  * @license Multi Input Mask plugin for jquery
- * https://github.com/andr-04/inputmask-multi
+ * https://github.com/ruslanbelziuk/inputmask-multi
  * Copyright (c) 2012-2016 Andrey Egorov
+ * Copyright (c) 2020 Ruslan Belziuk
  * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
- * Version: 1.2.0
+ * Version: 1.3.0
  *
  * Requriements:
  * https://github.com/RobinHerbots/jquery.inputmask
@@ -196,7 +197,7 @@
     }
 
     var unbindOriginal = function() {
-        events = $._data(this, "events");
+        var events = $._data(this, "events");
         var types = ["keydown", "keypress", "paste", "dragdrop", "drop", "setvalue", "reset", "cut", "blur"]
         var that = this;
         $.each(types, function(idx, evt_name) {
@@ -228,6 +229,11 @@
 
     var maskApply = function(match, newtext) {
         var maskOpts = this.inputmasks.options;
+        var vars = {
+            newtext: newtext
+        };
+        maskOpts.onMaskApply.call(this, match, vars, maskMatch);
+        newtext = vars.newtext;
         if (match && (newtext !== undefined || match.mask != this.inputmasks.oldmatch.mask)) {
             var caretPos;
             if (newtext === undefined) {
@@ -312,7 +318,7 @@
         var text = this.inputmask._valueGet();
         e = e || window.event;
         var k = e.which || e.charCode || e.keyCode, c = String.fromCharCode(k);
-        caretPos = caret.call(this);
+        var caretPos = caret.call(this);
         if (caretPos.begin == caretPos.end && text.charAt(caretPos.begin) == this.inputmasks.placeholder) {
             text = text.substring(0, caretPos.begin) + c + text.substring(caretPos.end + 1);
         } else {
@@ -354,6 +360,7 @@
 
     var maskStart = function(maskOpts) {
         maskOpts = $.extend(true, {
+            onMaskApply: $.noop,
             onMaskChange: $.noop
         }, maskOpts);
         var defs = {};

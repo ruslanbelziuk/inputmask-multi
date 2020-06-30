@@ -4,7 +4,7 @@
  * Copyright (c) 2012-2016 Andrey Egorov
  * Copyright (c) 2020 Ruslan Belziuk
  * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
- * Version: 1.3.0
+ * Version: 1.3.1
  *
  * Requriements:
  * https://github.com/RobinHerbots/jquery.inputmask

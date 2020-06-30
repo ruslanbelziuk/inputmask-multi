@@ -89,6 +89,7 @@ On plugin initialization is transferred an object which is sets its work. This o
 * **replace** - the templated symbol which will be replaced all significant symbols by; can be absent in definitions object of inputmask object;
 * **list** - the array of objects of masks of input;
 * **listKey** - the name of the property in objects which is contains the mask of input;
+* **onMaskApply** - the function (callback) which is called before the current mask of input is updated; the 1st parameter is a matched object, the 2nd parameter is the new content
 * **onMaskChange** - the function (callback) which is called on update the current mask of input; 1st parameter is an object with fitted mask, 2nd parameter is accuracy of the new mask: true - the mask fits completely, false - it’s required another symbols to determine true mask.
 
 To initialize the plugin is required to call inputmasks for an input field:
@@ -118,6 +119,10 @@ To initialize the plugin is required to call inputmasks for an input field:
 			replace: '#',
 			list: maskList,
 			listKey: "mask",
+			onMaskApply: function(match, newtext) {
+				console.log(match);
+				console.log(newtext);
+			},
 			onMaskChange: function(maskObj, completed) {
 				if (completed) {
 					var hint = maskObj.name_ru;

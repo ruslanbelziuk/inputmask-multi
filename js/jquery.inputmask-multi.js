@@ -359,10 +359,7 @@
     }
 
     var maskStart = function(maskOpts) {
-        maskOpts = $.extend(true, {
-            onMaskApply: $.noop,
-            onMaskChange: $.noop
-        }, maskOpts);
+        maskOpts = $.extend(true, $.fn.inputmasks.defaults, maskOpts);
         var defs = {};
         for (var def in maskOpts.inputmask.definitions) {
             var validator = maskOpts.inputmask.definitions[def].validator;
@@ -421,4 +418,8 @@
         }
     }
 
+    $.fn.inputmasks.defaults = {
+        onMaskApply: $.noop,
+        onMaskChange: $.noop
+    };
 })(jQuery);

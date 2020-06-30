@@ -4,7 +4,8 @@
   "version": "1.2.0",
   "main": "js/jquery.inputmask-multi.js",
   "authors": [
-    { "name": "Andrey Egorov", "homepage": "https://github.com/andr-04" }
+    { "name": "Andrey Egorov", "homepage": "https://github.com/andr-04" },
+    { "name": "Ruslan Belziuk", "homepage": "https://github.com/ruslanbelziuk" }
   ],
   "license": "MIT",
   "keywords": [
@@ -19,7 +20,7 @@
     "jquery-plugin",
     "ecosystem:jquery"
   ],
-  "homepage": "https://github.com/andr-04/inputmask-multi",
+  "homepage": "https://github.com/ruslanbelziuk/inputmask-multi",
   "dependencies": {
     "jquery": ">=1.5",
     "jquery.inputmask": ">=3.2.0"

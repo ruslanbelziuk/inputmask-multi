@@ -228,6 +228,11 @@
 
     var maskApply = function(match, newtext) {
         var maskOpts = this.inputmasks.options;
+        var vars = {
+            newtext: newtext
+        };
+        maskOpts.onMaskApply.call(this, match, vars, maskMatch);
+        newtext = vars.newtext;
         if (match && (newtext !== undefined || match.mask != this.inputmasks.oldmatch.mask)) {
             var caretPos;
             if (newtext === undefined) {
@@ -354,6 +359,7 @@
 
     var maskStart = function(maskOpts) {
         maskOpts = $.extend(true, {
+            onMaskApply: $.noop,
             onMaskChange: $.noop
         }, maskOpts);
         var defs = {};
